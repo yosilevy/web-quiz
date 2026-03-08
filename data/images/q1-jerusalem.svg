@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="ירושלים">
+  <rect width="800" height="420" fill="#fde68a"/>
+  <rect y="320" width="800" height="100" fill="#d6d3d1"/>
+  <rect x="140" y="170" width="150" height="150" rx="8" fill="#f5deb3"/>
+  <rect x="330" y="140" width="200" height="180" rx="8" fill="#edd5a4"/>
+  <rect x="560" y="190" width="110" height="130" rx="8" fill="#f5deb3"/>
+  <circle cx="430" cy="140" r="44" fill="#f59e0b"/>
+  <text x="400" y="385" text-anchor="middle" font-size="38" font-family="Alef, Segoe UI, sans-serif" fill="#1f2937">ירושלים</text>
+</svg>

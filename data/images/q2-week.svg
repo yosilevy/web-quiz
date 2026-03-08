@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="לוח שבוע">
+  <rect width="800" height="420" fill="#bfdbfe"/>
+  <rect x="130" y="70" width="540" height="280" rx="22" fill="#ffffff" stroke="#1d4ed8" stroke-width="8"/>
+  <line x1="130" y1="145" x2="670" y2="145" stroke="#1d4ed8" stroke-width="6"/>
+  <line x1="207" y1="145" x2="207" y2="350" stroke="#93c5fd" stroke-width="4"/>
+  <line x1="284" y1="145" x2="284" y2="350" stroke="#93c5fd" stroke-width="4"/>
+  <line x1="361" y1="145" x2="361" y2="350" stroke="#93c5fd" stroke-width="4"/>
+  <line x1="438" y1="145" x2="438" y2="350" stroke="#93c5fd" stroke-width="4"/>
+  <line x1="515" y1="145" x2="515" y2="350" stroke="#93c5fd" stroke-width="4"/>
+  <line x1="592" y1="145" x2="592" y2="350" stroke="#93c5fd" stroke-width="4"/>
+  <text x="400" y="120" text-anchor="middle" font-size="34" font-family="Alef, Segoe UI, sans-serif" fill="#1e3a8a">שבוע</text>
+  <text x="400" y="392" text-anchor="middle" font-size="34" font-family="Alef, Segoe UI, sans-serif" fill="#1f2937">7 ימים</text>
+</svg>

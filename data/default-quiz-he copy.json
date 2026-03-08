@@ -1,0 +1,49 @@
+﻿{
+    "title":  "חידון ידע כללי - ניסיון",
+    "questions":  [
+                      {
+                          "question":  "מהי בירת ישראל?",
+                          "answers":  [
+                                          "ירושלים",
+                                          "חיפה",
+                                          "תל אביב",
+                                          "באר שבע"
+                                      ],
+                          "image":  "data:image/png;base64,",
+                          "correctIndex":  0
+                      },
+                      {
+                          "question":  "כמה ימים יש בשבוע?",
+                          "answers":  [
+                                          "5",
+                                          "6",
+                                          "7",
+                                          "8"
+                                      ],
+                          "image":  "data:image/png;base64,",
+                          "correctIndex":  2
+                      },
+                      {
+                          "question":  "איזה כוכב הלכת הוא הקרוב ביותר לשמש?",
+                          "answers":  [
+                                          "נוגה",
+                                          "מאדים",
+                                          "חמה",
+                                          "צדק"
+                                      ],
+                          "image":  "data:image/png;base64,",
+                          "correctIndex":  2
+                      },
+                      {
+                          "question":  "איזו שפה מדברים בעיקר בישראל?",
+                          "answers":  [
+                                          "עברית",
+                                          "ספרדית",
+                                          "יפנית",
+                                          "גרמנית"
+                                      ],
+                          "image":  "data:image/png;base64,",
+                          "correctIndex":  0
+                      }
+                  ]
+}

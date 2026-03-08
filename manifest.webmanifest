@@ -1,0 +1,19 @@
+{
+  "name": "חידון דינמי בעברית",
+  "short_name": "חידון",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fef3c7",
+  "theme_color": "#136f63",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "./icons/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ]
+}

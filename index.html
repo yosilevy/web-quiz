@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#136f63">
+  <meta name="description" content="חידון דינמי בעברית עם תמיכה מלאה ב-RTL">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <title>חידון דינמי</title>
+</head>
+<body>
+  <div class="bg-shape bg-shape-1" aria-hidden="true"></div>
+  <div class="bg-shape bg-shape-2" aria-hidden="true"></div>
+
+  <main class="app-shell" id="appShell" aria-live="polite">
+    <div class="top-controls" id="topControls" hidden>
+      <div class="score-chip" id="scoreChip">ניקוד: 0</div>
+      <button id="btnQuickRestart" class="icon-restart-btn" type="button" aria-label="התחלה מחדש" title="התחלה מחדש">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+          <path d="M12 5a7 7 0 1 1-6.2 3.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M3 3v5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <section class="screen active" id="screenLoad" aria-labelledby="loadTitle">
+      <h1 id="loadTitle">ברוכים הבאים לחידון!</h1>
+      <p class="subtitle">בחרו איך להתחיל:</p>
+      <div class="stack">
+        <button id="btnLoadFile" class="primary-btn">להתחלה: טען קובץ חידון</button>
+        <input id="fileInput" type="file" accept="application/json" hidden>
+      </div>
+      <a href="#" id="btnUseDefault" class="text-link load-sample-link">דוגמא</a>
+      <p id="loadError" class="error" role="alert" hidden></p>
+    </section>
+
+    <section class="screen" id="screenPreWelcome" aria-labelledby="preWelcomeTitle">
+      <h2 id="preWelcomeTitle">ברוכים הבאים לחידון</h2>
+      <div class="quiz-banner" id="quizNameBanner"></div>
+      <button id="btnStartQuiz" class="primary-btn compact-btn">התחלה</button>
+      <a href="#" id="linkBackToLoad" class="text-link">טעינה מחדש</a>
+    </section>
+
+    <section class="screen" id="screenQuiz" aria-labelledby="questionTitle">
+      <div id="questionImageWrap" class="question-image-wrap" hidden>
+        <img id="questionImage" class="question-image" alt="תמונת שאלה">
+      </div>
+      <h2 id="questionTitle" class="question"></h2>
+      <div id="answersGrid" class="answers-grid"></div>
+    </section>
+
+    <section class="screen" id="screenSummary" aria-labelledby="summaryTitle">
+      <h2 id="summaryTitle">עבודה טובה!</h2>
+      <p id="summaryText" class="summary-text"></p>
+      <div class="links-row">
+        <a href="#" id="linkRestart" class="text-link">התחלה מחדש</a>
+        <a href="#" id="linkReload" class="text-link">טעינה מחדש</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>

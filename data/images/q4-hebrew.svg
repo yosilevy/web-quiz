@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="עברית">
+  <rect width="800" height="420" fill="#dcfce7"/>
+  <rect x="150" y="70" width="500" height="280" rx="18" fill="#ffffff" stroke="#16a34a" stroke-width="7"/>
+  <text x="400" y="185" text-anchor="middle" font-size="88" font-family="Alef, Segoe UI, sans-serif" fill="#14532d">אבג</text>
+  <text x="400" y="260" text-anchor="middle" font-size="88" font-family="Alef, Segoe UI, sans-serif" fill="#14532d">דהו</text>
+  <text x="400" y="390" text-anchor="middle" font-size="34" font-family="Alef, Segoe UI, sans-serif" fill="#14532d">שפה עברית</text>
+</svg>

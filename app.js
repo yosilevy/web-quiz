@@ -14,6 +14,10 @@ const quizNameBanner = document.getElementById("quizNameBanner");
 const questionTitle = document.getElementById("questionTitle");
 const questionImageWrap = document.getElementById("questionImageWrap");
 const questionImage = document.getElementById("questionImage");
+const questionNavControls = document.getElementById("questionNavControls");
+const questionTypeLabel = document.getElementById("questionTypeLabel");
+const btnQuestionPrev = document.getElementById("btnQuestionPrev");
+const btnQuestionNext = document.getElementById("btnQuestionNext");
 const answersGrid = document.getElementById("answersGrid");
 const summaryText = document.getElementById("summaryText");
 
@@ -56,6 +60,11 @@ function clearWrongFeedback() {
 function showScreen(screenKey) {
   Object.values(screens).forEach((screen) => screen.classList.remove("active"));
   screens[screenKey].classList.add("active");
+
+  if (screenKey !== "quiz") {
+    questionNavControls.hidden = true;
+    setQuestionTypeLabel();
+  }
 }
 
 function updateScoreChip() {
@@ -78,6 +87,76 @@ function showError(message) {
 function clearError() {
   loadError.hidden = true;
   loadError.textContent = "";
+}
+
+function hasValidCssColor(colorValue) {
+  if (typeof colorValue !== "string") {
+    return false;
+  }
+
+  const trimmed = colorValue.trim();
+  if (!trimmed) {
+    return false;
+  }
+
+  if (window.CSS && typeof window.CSS.supports === "function") {
+    return window.CSS.supports("color", trimmed);
+  }
+
+  // Fallback for older browsers without CSS.supports.
+  const probe = document.createElement("span");
+  probe.style.color = "";
+  probe.style.color = trimmed;
+  return probe.style.color !== "";
+}
+
+function applyQuestionColor(colorValue) {
+  const quizScreen = screens.quiz;
+  if (typeof colorValue === "string" && colorValue.trim()) {
+    quizScreen.style.setProperty("--slide-accent", colorValue.trim());
+    quizScreen.classList.add("has-custom-slide-color");
+    return;
+  }
+
+  quizScreen.style.removeProperty("--slide-accent");
+  quizScreen.classList.remove("has-custom-slide-color");
+}
+
+function setQuestionTypeLabel(typeLabel) {
+  if (typeof typeLabel === "string" && typeLabel.trim()) {
+    questionTypeLabel.textContent = typeLabel.trim();
+    questionTypeLabel.hidden = false;
+    return;
+  }
+
+  questionTypeLabel.textContent = "";
+  questionTypeLabel.hidden = true;
+}
+
+function updateQuestionNavButtons() {
+  if (!activeQuiz || !Array.isArray(activeQuiz.questions)) {
+    btnQuestionPrev.disabled = true;
+    btnQuestionNext.disabled = true;
+    return;
+  }
+
+  btnQuestionPrev.disabled = currentQuestionIndex <= 0;
+  btnQuestionNext.disabled = currentQuestionIndex >= activeQuiz.questions.length - 1;
+}
+
+function navigateQuestion(step) {
+  if (!activeQuiz || answerLocked) {
+    return;
+  }
+
+  const nextIndex = currentQuestionIndex + step;
+  if (nextIndex < 0 || nextIndex >= activeQuiz.questions.length) {
+    return;
+  }
+
+  clearWrongFeedback();
+  currentQuestionIndex = nextIndex;
+  renderQuestion();
 }
 
 function validateQuizData(data) {
@@ -112,6 +191,19 @@ function validateQuizData(data) {
 
     if (q.image !== undefined && (typeof q.image !== "string" || !q.image.trim())) {
       throw new Error(`${prefix} השדה image חייב להיות מחרוזת עם שם/נתיב תמונה.`);
+    }
+
+    if (q.color !== undefined && q.color !== null) {
+      if (typeof q.color !== "string") {
+        throw new Error(`${prefix} השדה color חייב להיות מחרוזת (או ריק).`);
+      }
+      if (q.color.trim() && !hasValidCssColor(q.color)) {
+        throw new Error(`${prefix} השדה color חייב להיות צבע CSS תקין (למשל #f59e0b או teal).`);
+      }
+    }
+
+    if (q.typeLabel !== undefined && q.typeLabel !== null && typeof q.typeLabel !== "string") {
+      throw new Error(`${prefix} השדה typeLabel חייב להיות מחרוזת (או ריק).`);
     }
   });
 }
@@ -193,7 +285,11 @@ function handleAnswerClick(button, isCorrect) {
 
 function renderQuestion() {
   const question = activeQuiz.questions[currentQuestionIndex];
+  questionNavControls.hidden = false;
   questionTitle.textContent = question.question;
+  applyQuestionColor(question.color);
+  setQuestionTypeLabel(question.typeLabel);
+  updateQuestionNavButtons();
   setQuestionImage(question.image, question.question);
   answersGrid.innerHTML = "";
 
@@ -280,9 +376,19 @@ btnStartQuiz.addEventListener("click", () => {
   startQuiz();
 });
 
+btnQuestionPrev.addEventListener("click", () => {
+  navigateQuestion(-1);
+});
+
+btnQuestionNext.addEventListener("click", () => {
+  navigateQuestion(1);
+});
+
 linkBackToLoad.addEventListener("click", (event) => {
   event.preventDefault();
   activeQuiz = null;
+  applyQuestionColor();
+  setQuestionTypeLabel();
   resetProgress();
   setTopControlsVisible(false);
   clearError();
@@ -298,6 +404,8 @@ linkRestart.addEventListener("click", (event) => {
 linkReload.addEventListener("click", (event) => {
   event.preventDefault();
   activeQuiz = null;
+  applyQuestionColor();
+  setQuestionTypeLabel();
   resetProgress();
   setTopControlsVisible(false);
   clearError();
